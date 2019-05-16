@@ -19,36 +19,36 @@ def rotateMatrix(d):
 
   print ("counter clockwise")
 
+  # top->left
   (r,c) = top.shape
-  # left
-  m[:,:1] = np.flip(top.reshape(top.shape))
+  m[:,:1] = np.flip(top.reshape(c,r))
   
+  # left->bottom 
   (r,c) = left.shape
-  # bottom 
   m[rows-1:,:] = left.reshape(c,r)
   
-  (r,c) = right.shape
-  # top 
-  m[:1] = right.reshape(c,r)
-
+  # bottom->right
   (r,c) = bottom.shape
-  # right 
   m[:,cols-1:] = np.flip(bottom.reshape(c,r))
+
+  # right->top
+  (r,c) = right.shape
+  m[:1,:] = right.reshape(c,r)
 
   print ("\n{}\n\n{}\n\n{}\n\n{}\n\n{}\n".format(top,left,bottom,right,m))
 
-  # print ("clockwise")
+  print ("clockwise")
 
-  # (r,c) = _top.shape
-  # right = _top.reshape(c,r)
+  # top->right
+  (r,c) = top.shape
+  m[:,cols-1:] = top.reshape(c,r)
 
-  # (r,c) = _left.shape
-  # top = np.flip(_left.reshape(c,r))
+  # right->bottom
+  (r,c) = right.shape
+  m[rows-1:,:] = np.flip(right.reshape(c,r))
 
-  # (r,c) = _right.shape
-  # bottom = np.flip(_right.reshape(c,r))
+  # bottom->left
+  (r,c) = bottom.shape
+  m[:,:1] = np.flip(bottom.reshape(c,r))
 
-  # (r,c) = _bottom.shape
-  # left = _bottom.reshape(c,r)
-
-  # print ("\n{}\n\n{}\n\n{}\n\n{}\n\n{}\n".format(top,left,bottom,right,m))
+  print ("\n{}\n\n{}\n\n{}\n\n{}\n\n{}\n".format(top,right,bottom,left,m))
