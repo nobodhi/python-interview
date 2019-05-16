@@ -21,7 +21,7 @@ def rotateMatrix(d):
 
   (r,c) = top.shape
   # left
-  m[:,:1] = np.flip(top.reshape(c,r))
+  m[:,:1] = np.flip(top.reshape(top.shape))
   
   (r,c) = left.shape
   # bottom 
@@ -34,11 +34,6 @@ def rotateMatrix(d):
   (r,c) = bottom.shape
   # right 
   m[:,cols-1:] = np.flip(bottom.reshape(c,r))
-
-  # m[:1] = top
-  # m[:,:1] = left
-  # m[rows-1:,:] = bottom
-  # m[:,cols-1:] = right
 
   print ("\n{}\n\n{}\n\n{}\n\n{}\n\n{}\n".format(top,left,bottom,right,m))
 
