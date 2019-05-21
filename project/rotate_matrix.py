@@ -13,9 +13,8 @@ def rotateMatrix(d):
   bottom = m.copy()[rows-1:,:]
   left = m.copy()[:,:1]
 
-  # loop
   # swap everything out, and assign the new values back into the matrix
-  # it flips differently depending on if you are going left or right
+  # when it flips depends on if you are going clockwise or counter clockwise
 
   print ("counter clockwise")
 
@@ -38,22 +37,17 @@ def rotateMatrix(d):
   # print ("\n{}\n\n{}\n\n{}\n\n{}\n\n{}\n".format(top,left,bottom,right,m))
   print ("\n{}\n".format(m))
 
-  print ("clockwise")
-
-  # left-> top
-  (r,c) = left.shape
-  m[:1,:] = np.flip(left.reshape(c,r))
-
-  # bottom->left
-  (r,c) = bottom.shape
-  m[:,:1] = bottom.reshape(c,r)
-
-  # top->right
-  (r,c) = top.shape
-  m[:,cols-1:] = top.reshape(c,r)
-
-  # right->bottom
-  (r,c) = right.shape
-  m[rows-1:,:] = np.flip(right.reshape(c,r))
-
-  print ("\n{}\n".format(m))
+  # print ("clockwise")
+  # # top->right
+  # (r,c) = top.shape
+  # m[:,cols-1:] = top.reshape(c,r)
+  # # left-> top
+  # (r,c) = left.shape
+  # m[:1,:] = np.flip(left.reshape(c,r))
+  # # bottom->left
+  # (r,c) = bottom.shape
+  # m[:,:1] = bottom.reshape(c,r)
+  # # right->bottom
+  # (r,c) = right.shape
+  # m[rows-1:,:] = np.flip(right.reshape(c,r))
+  # print ("\n{}\n".format(m))

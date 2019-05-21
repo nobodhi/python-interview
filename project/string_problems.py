@@ -1,6 +1,6 @@
 # string problems
 
-def isUnique(str):
+def is_unique(str):
   """returns True if every word in the string is unique"""
   s = str.split()
   for x in set(s):
