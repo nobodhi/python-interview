@@ -5,23 +5,17 @@ def find_primes(max_value):
   TODO: a wheel sieve only looks at those cardinals ending in 1,3,7,9"""
 
   candidates = {a:True for a in range(2,max_value+1)} # cardinals up to max_value
-  filters = list(range(2,int(max_value**0.5)+1)) # primes up to sqrt(max_value)
-  counter = max_value + int(max_value**0.5)+1 # count of bit operations
+  sieves = list(filter(lambda f:f<=max_value**0.5,candidates))
 
-  for current in filters:
+  for current in sieves:
     if candidates[current]:
       runner = current**2
-      counter+=1
       while runner <= max_value:
         if candidates[runner]:
-          counter += 1
           candidates[runner] = False
         runner += current 
-        counter += 1
 
-  primes = [k for (k,v) in candidates.items() if v == True]
-  counter += len(primes)
-  print("max ", max_value, "operations ", counter)
+  primes = list(filter(lambda p:candidates[p],candidates))
   return primes
 
 print(find_primes(100))
