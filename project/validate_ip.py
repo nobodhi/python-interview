@@ -17,4 +17,6 @@ print(validate_ip('127.0.0.1'))
 print(validate_ip('127.0.0.1.4'))
 print(validate_ip('127.b.0.1'))
 
-# TODO: add assert
+assert validate_ip('127.0.0.1') == ['127', '0', '0', '1']
+assert validate_ip('127.0.0.256') == None
+assert validate_ip('127.0.a.1') == None
