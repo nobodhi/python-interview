@@ -1,8 +1,16 @@
 [color]
-    ui = true
+	ui = auto
 [color "status"]
-    changed = red bold
-    untracked = red bold
-    added = green bold
-    header = white normal dim
-
+	changed = red bold
+	untracked = blue bold
+	added = green bold
+	header = white normal dim
+[color "branch"]
+	current = yellow reverse
+	local = yellow bold
+	remote = green bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
