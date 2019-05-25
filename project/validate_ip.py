@@ -1,17 +1,18 @@
 # confirm that a given IP address is valid.
 
 def validate_ip(ip_address):
-  l = ip_address.split(".")
-  if len(l) != 4:
+  """An IP address consists of 32 bits, shown as 4 terms 
+  of numbers from 0-255 represented in decimal form """
+
+  terms = ip_address.split(".")
+  if len(terms) != 4:
     return None
-  if l[0] == 0:
-    return None
-  for t in range(0,4):
-    if not l[t].isdecimal():
+  for octet in range(0,4):
+    if not terms[octet].isdecimal():
       return None
-    elif (int(l[t]) < 0 or int(l[t]) > 255):
+    elif (int(terms[octet]) < 0 or int(terms[octet]) > 255):
       return None
-  return l
+  return terms
 
 print(validate_ip('127.0.0.1'))
 print(validate_ip('127.0.0.1.4'))

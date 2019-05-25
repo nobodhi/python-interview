@@ -18,3 +18,9 @@ from collections import Counter
 counts = Counter(colors)
 print(Counter(counts))
 print(Counter(counts).most_common(1))
+
+# Functional approach (best!)
+
+l = [ [x,colors.count(x)] for x in set(colors) ]
+
+print(l)
