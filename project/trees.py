@@ -1,20 +1,22 @@
 class Node():
-  def __init__(self, value):
-    self.value = value
-    self.left = None
-    self.right = None
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
 
 class BTree():
-  def __init__(self, value):
-    self.root = Node(value)
-  
-  def pre_order(self, n, visited = []):
-    visited.append(n.value)
-    if n.left:
-      self.pre_order(n.left)
-    if n.right:
-      self.pre_order(n.right)
-    return visited
+    def __init__(self, value):
+        self.root = Node(value)
+
+    def pre_order(self, n, visited=[]):
+        visited.append(n.value)
+        if n.left:
+            self.pre_order(n.left)
+        if n.right:
+            self.pre_order(n.right)
+        return visited
+
 
 t = BTree(1)
 t.root.left = Node(2)
