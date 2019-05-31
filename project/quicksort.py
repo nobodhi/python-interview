@@ -10,7 +10,8 @@
 def quicksort_in_place(array, start, end):
     assert end < len(array)
     if start < end:
-        print(array, start, end)
+        print(start, end)
+        print(array)
         pivot_line = partition(array, start, end)
         quicksort_in_place(array, start, pivot_line-1)
         quicksort_in_place(array, pivot_line+1, end)
@@ -19,7 +20,9 @@ def quicksort_in_place(array, start, end):
 def partition(array, start, end):
     pivot_line = end # TODO choose a median value
     pivot_value = array[pivot_line] 
+    print("pivot", pivot_line, pivot_value)
     array[pivot_line], array[start] = array[start], array[pivot_line]
+    print(array)
     pivot_line = start
     for runner in range(start, end+1):
         if array[runner] < pivot_value: # move the runner to the line and advance
