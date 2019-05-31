@@ -23,7 +23,7 @@ assert validate_ip('127.0.0.1') == True
 assert validate_ip('127.0.0.256') == False
 assert validate_ip('127.0.a.1') == False
 
-# filter function
+# filter function BAD
 def filter_octects(ip_address):
   """functional approach filters the list"""
   terms = ip_address.split(".")
@@ -42,11 +42,14 @@ assert filter_octects('127.0.a.1') == False
 
 # list comprehension (best!)
 def all_valid(ip_address):
-  """`all` uses list comprehension to filter"""
+  """
+  `all` uses list comprehension to filter
+  https://docs.python.org/3/library/functions.html#all
+  """
   terms = ip_address.split(".")
   if not all(octet.isdecimal() for octet in terms):
     return False
-  elif not all(0<=int(octet)<=255 for octet in terms):
+  elif not all(0 <= int(octet) <= 255 for octet in terms):
     return False
   else:
     return True

@@ -1,6 +1,5 @@
 # combining lists into dictionaries
 
-from collections import Counter
 names = ['x', 'y', 'z']
 coords = [[1, 2], [3, 4], [5, 6]]
 
@@ -23,6 +22,7 @@ for k, v in d.items():
 
 # Same thing using Counter
 
+from collections import Counter
 counts = Counter(colors)
 print(Counter(counts))
 print(Counter(counts).most_common(1))
@@ -34,7 +34,7 @@ l = [[x, colors.count(x)] for x in set(colors)]
 print(l)
 
 
-# merge two dictionaries using **kwargs
+# merge two dictionaries using **kwargs BAD
 dict1 = {k: True for k in range(10)}
 print(dict1)
 dict2 = {k: True for k in range(10, 20)}
@@ -42,7 +42,7 @@ print(dict2)
 dict3 = {**dict1, **dict2}
 print(dict3)
 
-# more ideomatic method using builtin fuction
+# more ideomatic method using builtin fuction GOOD
 dict1 = {k: True for k in range(10)}
 print(dict1)
 dict2 = {k: True for k in range(10, 20)}
