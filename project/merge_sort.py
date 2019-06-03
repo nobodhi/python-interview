@@ -5,17 +5,11 @@
 def merge_sort(array):
     n = len(array)
     if n > 1:
-    
         mid = n//2
-        left = []
-        right = []
-        
         left = array[0:mid]
         right = array[mid:n]
-    
         merge_sort(left)
         merge_sort(right)
-    
         merge(left,right,array)
 
 def merge(left, right, result):
