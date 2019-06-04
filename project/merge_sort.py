@@ -8,26 +8,29 @@ def merge_sort(array):
         mid = n//2
         left = array[0:mid]
         right = array[mid:n]
+        print(mid, left, right,array)
         merge_sort(left)
         merge_sort(right)
         merge(left,right,array)
 
-def merge(left, right, result):
-    i = j = 0
-    for k in range(0, len(result)):
-        if j >= len(right):
-            result[k:len(result)] = left[i:len(left)]
+def merge(left, right, array):
+    l_ptr = r_ptr = 0
+    for arr_ptr in range(0, len(array)):
+        if r_ptr == len(right):
+            array[arr_ptr:len(array)] = left[l_ptr:len(left)]
             break
-        elif i >= len(left):
-            result[k:len(result)] = right[j:len(left)]
+        elif l_ptr == len(left):
+            array[arr_ptr:len(array)] = right[r_ptr:len(right)]
             break
-        elif left[i] < right[j]:
-                result[k] = left[i]
-                i+=1
+        elif left[l_ptr] <= right[r_ptr]:
+                array[arr_ptr] = left[l_ptr]
+                l_ptr+=1
         else:
-            result[k] = right[j]
-            j+=1
+            array[arr_ptr] = right[r_ptr]
+            r_ptr+=1
 
-array = [99,21,3,19,21,5,67,98,3,12,22,31,45]
+array = [99,2,3,3,12,4,5]
+l = len(array)
 merge_sort(array)
 print(array)
+assert len(array) == l
