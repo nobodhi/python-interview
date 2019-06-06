@@ -15,13 +15,15 @@ def merge_sort(array):
 
 def merge(left, right, array):
     array_length = len(array)
+    right_length = len(right)
+    left_length = len(left)
     left_index = right_index = 0
     for array_index in range(0, array_length):
-        if right_index == len(right):
-            array[array_index:array_length] = left[left_index:len(left)]
+        if right_index == right_length:
+            array[array_index:array_length] = left[left_index:left_length]
             break
-        elif left_index == len(left):
-            array[array_index:array_length] = right[right_index:len(right)]
+        elif left_index == left_length:
+            array[array_index:array_length] = right[right_index:right_length]
             break
         elif left[left_index] <= right[right_index]:
                 array[array_index] = left[left_index]
