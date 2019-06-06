@@ -8,13 +8,12 @@ def merge_sort(array):
         mid = n//2
         left = array[0:mid]
         right = array[mid:n]
-        print(mid, left, right,array)
+        print(mid, left, right, array)
         merge_sort(left)
         merge_sort(right)
-        merge(left,right,array)
+        merge(left, right, array, n)
 
-def merge(left, right, array):
-    array_length = len(array)
+def merge(left, right, array, array_length):
     right_length = len(right)
     left_length = len(left)
     left_index = right_index = 0
@@ -27,13 +26,13 @@ def merge(left, right, array):
             break
         elif left[left_index] <= right[right_index]:
                 array[array_index] = left[left_index]
-                left_index+=1
+                left_index += 1
         else:
             array[array_index] = right[right_index]
-            right_index+=1
+            right_index += 1
 
 array = [99,2,3,3,12,4,5]
-l = len(array)
+arr_len = len(array)
 merge_sort(array)
 print(array)
-assert len(array) == l
+assert len(array) == arr_len
