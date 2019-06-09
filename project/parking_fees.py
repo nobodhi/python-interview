@@ -9,9 +9,9 @@ E, L = sys.argv[1], sys.argv[2]
 
 print(E, L)
 
+# naive solution: use // instead of importing math package!
+# instructions are vague re. in & out fee?
 def get_parking_fee(E, L):
-    # my solution
-    import math # this should have been "from math import ceil"
     entrance_fee = 2
     first_hour_rate = 3
     successive_rate = 4
@@ -25,22 +25,22 @@ def get_parking_fee(E, L):
     total_fee = entrance_fee
     
     if (elapsed_time > 0):
-        total_fee += first_hour_rate  # instructions are vague re. in & out fee?
+        total_fee += first_hour_rate
     if (elapsed_time > 60):
-        successive_hours = math.ceil((elapsed_time)/60 - 1)
+        successive_hours = elapsed_time // 60
         total_fee += successive_hours * successive_rate
     return total_fee
 
 
 print(get_parking_fee(E, L))
 
-
+# accepted solution?
 def get_faster_fee(E, L):
-    # accepted solution
     entry_hour, entry_minute = E.split(":")
     exit_hour, exit_minute = L.split(":")
-    total_hours = ((int(exit_hour)*60 + int(exit_minute)) - (int(entry_hour)*60 + int(entry_minute))) / 60
-    return 5 + (max(int(total_hours), 0)) * 4  if int(total_hours) != total_hours else 5 + (max(int(total_hours-1), 0)) * 4
+    total_hours = ((int(exit_hour)*60 + int(exit_minute)) 
+                - (int(entry_hour)*60 + int(entry_minute))) // 60
+    return 5 + (max(int(total_hours-1), 0)) * 4
 
 print(get_faster_fee(E, L))
 
