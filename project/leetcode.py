@@ -52,14 +52,38 @@ class Solution:
             result = - result
         return result
 
-nums = [11, 2, 7, 15]
-target = 9
-result = Solution().twoSum(nums, target)
-print(result)
+    # these are really bad variable names
+    def isPalindrome(self, x: int) -> bool:
+        """without converting to string. TODO: try successively divide by 10 
+        to get the length instead of using a list"""
+        assert type(x) == int
+        if x < 0: return False
+        print(x)
+        loop = 0
+        digits = []
+        while x > 0:
+            digit = (x // 10**loop) % 10
+            digits.append(digit)
+            x = x - digit * 10**loop
+            print(digit, loop, x, digits)
+            loop += 1
+        length = len(digits)
+        for index in range(0, length//2):
+            if digits[index] != digits[length-1-index]:
+                return False
+        return True
+    
 
-print(Solution().simple_reverse(321))
-print(Solution().simple_reverse(-321))
-# -1534236469
-# -2147483412
-assert Solution().reverse(-1534236469) == 0
-assert Solution().reverse(-2147483412) == -2143847412
+# nums = [11, 2, 7, 15]
+# target = 9
+# result = Solution().twoSum(nums, target)
+# print(result)
+
+# print(Solution().simple_reverse(321))
+# print(Solution().simple_reverse(-321))
+# # -1534236469
+# # -2147483412
+# assert Solution().reverse(-1534236469) == 0
+# assert Solution().reverse(-2147483412) == -2143847412
+
+print(Solution().isPalindrome(121))
