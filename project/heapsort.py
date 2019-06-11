@@ -48,10 +48,8 @@ array = random_list(10)
 print(array)
 build_max_heap(array)
 print(array)
-
 array = random_list(10)
 # array = [99,2,3,3,12,4,5]
 print(array)
 build_min_heap(array)
 print(array)
-
