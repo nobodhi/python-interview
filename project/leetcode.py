@@ -73,6 +73,27 @@ class Solution:
                 return False
         return True
     
+    def romanToInt(self, s: str) -> int:
+        # MCMLXIII
+        roman = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
+        numerals = [1, 5, 10, 50, 100, 500, 1000]
+        roman_numerals = dict(zip(roman, numerals))
+        result = 0
+        characters = len(s)
+        skip_next = False
+        for index, letter in enumerate(list(s)):
+            if not skip_next:
+                value = roman_numerals[letter]
+                if index + 1  <= characters-1:
+                    if roman_numerals[s[index+1]] > roman_numerals[s[index]]:
+                        value = roman_numerals[s[index+1]] - value
+                        skip_next = True
+                result += value
+            else:
+                skip_next = False
+        return result
+            
+
 
 # nums = [11, 2, 7, 15]
 # target = 9
@@ -86,4 +107,6 @@ class Solution:
 # assert Solution().reverse(-1534236469) == 0
 # assert Solution().reverse(-2147483412) == -2143847412
 
-print(Solution().isPalindrome(121))
+# print(Solution().isPalindrome(121))
+
+print(Solution().romanToInt('MCMLXIII')) # 1963
