@@ -47,7 +47,7 @@ class Solution:
             if result > max_value:
                 return 0
             x = x // 10
-            power-=1
+            power -= 1
         if is_negative:
             result = - result
         return result
@@ -57,7 +57,8 @@ class Solution:
         """without converting to string. TODO: try successively divide by 10 
         to get the length instead of using a list"""
         assert type(x) == int
-        if x < 0: return False
+        if x < 0:
+            return False
         print(x)
         loop = 0
         digits = []
@@ -72,7 +73,7 @@ class Solution:
             if digits[index] != digits[length-1-index]:
                 return False
         return True
-    
+
     def romanToInt(self, s: str) -> int:
         # MCMLXIII
         roman = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
@@ -84,7 +85,7 @@ class Solution:
         for index, letter in enumerate(list(s)):
             if not skip_next:
                 value = roman_numerals[letter]
-                if index + 1  <= characters-1:
+                if index+1 <= characters-1:
                     if roman_numerals[s[index+1]] > roman_numerals[s[index]]:
                         value = roman_numerals[s[index+1]] - value
                         skip_next = True
@@ -92,8 +93,20 @@ class Solution:
             else:
                 skip_next = False
         return result
-            
 
+    def longestCommonPrefix(self, strs: [str]) -> str:
+        if len(strs) == 0:
+            return ""
+        lengths = {item: len(item) for item in strs}
+        result = min(lengths, key=lengths.get)
+        for size in reversed(range(0,lengths[result])):
+            for word in strs:
+                if word[:size+1] != result:
+                    result = result[:size]
+                    break
+            if word[:size+1] == result:
+                break
+        return result
 
 # nums = [11, 2, 7, 15]
 # target = 9
@@ -109,4 +122,7 @@ class Solution:
 
 # print(Solution().isPalindrome(121))
 
-print(Solution().romanToInt('MCMLXIII')) # 1963
+# print(Solution().romanToInt('MCMLXIII'))  # 1963
+print(Solution().longestCommonPrefix(["flow","flog","flight"]))
+print(Solution().longestCommonPrefix(["flow","flog","flog"]))
+print(Solution().longestCommonPrefix([]))
