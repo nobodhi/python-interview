@@ -11,8 +11,8 @@ class Solution:
         return []
 
     def reverse(self, x) -> int:
-        """reverse the (base 10) digits of an integer
-        # a pairwise swap might take n//2 steps and works in place
+        """naive solution using a list.
+        # TODO: in place pairwise swap (n//2 steps)?
         # NOTE: blah blah 32 bit if > 2**31 return 0"""
         result = 0
         is_negative = (x != abs(x))
@@ -32,8 +32,7 @@ class Solution:
         return result
 
     def simple_reverse(self, x) -> int:
-        """TODO try using extended slice to reverse the string, 
-        i.e. foo = x[::-1]. Note that we're using str(x) anyway"""
+        """reverse an integer using numeric techniques"""
         result = 0
         is_negative = (x != abs(x))
         if is_negative:
@@ -41,7 +40,11 @@ class Solution:
             max_value = 2**31
         else:
             max_value = 2**31-1
-        power = len(str(x))-1
+        power = -1
+        temp = x
+        while(temp > 0):
+            temp = temp // 10
+            power += 1
         while x > 0:
             result += x % 10 * 10**power
             if result > max_value:
@@ -50,6 +53,22 @@ class Solution:
             power -= 1
         if is_negative:
             result = - result
+        return result
+
+    def string_reverse(self, x) -> int:
+        """reverses an integer by converting to string and taking a slice"""
+        is_negative = (x != abs(x))
+        if is_negative:
+            x = abs(x)
+            max_value = 2**31
+        else:
+            max_value = 2**31-1
+        # extended slice = all values in step order = -1
+        result = str(x)[::-1]
+        if int(result) > max_value:
+            return 0
+        if is_negative:
+            result = "-" + result
         return result
 
     # these are really bad variable names
@@ -99,7 +118,7 @@ class Solution:
             return ""
         lengths = {item: len(item) for item in strs}
         result = min(lengths, key=lengths.get)
-        for size in reversed(range(0,lengths[result])):
+        for size in reversed(range(0, lengths[result])):
             for word in strs:
                 if word[:size+1] != result:
                     result = result[:size]
@@ -113,8 +132,12 @@ class Solution:
 # result = Solution().twoSum(nums, target)
 # print(result)
 
-# print(Solution().simple_reverse(321))
-# print(Solution().simple_reverse(-321))
+
+print(Solution().simple_reverse(321))
+print(Solution().simple_reverse(-321))
+print(Solution().string_reverse(321))
+print(Solution().string_reverse(-321))
+
 # # -1534236469
 # # -2147483412
 # assert Solution().reverse(-1534236469) == 0
@@ -123,6 +146,6 @@ class Solution:
 # print(Solution().isPalindrome(121))
 
 # print(Solution().romanToInt('MCMLXIII'))  # 1963
-print(Solution().longestCommonPrefix(["flow","flog","flight"]))
-print(Solution().longestCommonPrefix(["flow","flog","flog"]))
-print(Solution().longestCommonPrefix([]))
+# print(Solution().longestCommonPrefix(["flow","flog","flight"]))
+# print(Solution().longestCommonPrefix(["flow","flog","flog"]))
+# print(Solution().longestCommonPrefix([]))
