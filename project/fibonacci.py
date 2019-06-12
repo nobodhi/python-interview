@@ -1,29 +1,34 @@
 # ideomatic fibonacci vs recursive
 # 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 
-val = 15
 
-
-def fib_l(n):
+def fib(n):
+    """the pythonic approach"""
     if n < 2:
         return 1
     x, y = 1, 1
-    for i in range(n):
+    for _ in range(n):
+        # print(_, x, y)
         x, y = y, x + y
     return x
 
 
-def fib_r(n):
+def fib_recursive(n, memo={}):
+    """recursive fibonacci reaches maximum recursion after 998 calls"""
+    if n in memo:
+        return memo[n]
     if n < 2:
         result = 1
     else:
-        result = fib_r(n-1)+fib_r(n-2)
+        result = fib_recursive(n-1, memo)+fib_recursive(n-2, memo)
+    memo[n] = result
     return result
 
 
-print(fib_l(val))
+val = 998
+print(fib(val))
 print()
-print(fib_r(val))
+print(fib_recursive(val))
 
 # make a random assertion
-assert fib_l(15) == fib_r(15) == 987
+assert fib(15) == fib_recursive(15) == 987
