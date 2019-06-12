@@ -49,3 +49,11 @@ dict2 = {k: True for k in range(10, 20)}
 print(dict2)
 dict1.update(dict2)
 print(dict1)
+
+# find the most common value of a list using a dictionary 
+# and list comprehension
+def get_most_common(numbers: [int]):
+    result = {x: numbers.count(x) for x in numbers}
+    return max(result, key=result.get)
+
+print(get_most_common([1,3,1,3,2,1]))
