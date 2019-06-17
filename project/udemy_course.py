@@ -6,7 +6,7 @@ def to_string(given_array):
     list_rows = []
     for row in given_array:
         list_rows.append(str(row))
-    return '[' + ',\n '.join(list_rows) + ']'
+    return '[' + ',\n '.join(list_rows) + ']\n'
 
 
 # udemy course 11-essential-coding-interview-questions
@@ -111,39 +111,30 @@ def non_repeating(given_string):
 
 def mine_sweeper(bombs: [[int]], rows, cols) -> [[int]]:
     map_grid = [[0 for i in range(cols)] for j in range(rows)]
-    for row in range(rows):
-        for col in range(cols):
-            if [row, col] in bombs:
-                map_grid[row][col] = -1
-            else:
-                map_grid[row][col] = get_bombs(bombs, row, col, rows, cols)
+    for [row, col] in bombs:
+        map_grid[row][col] = -1
+        for row_index in range( max(row-1, 0), min(row+2, rows)):
+            for col_index in range( max(col-1, 0), min(col+2, cols)):
+                if row_index == row and col_index == col:
+                    pass
+                else:
+                    if map_grid[row_index][col_index] > -1:
+                        map_grid[row_index][col_index] += 1
     return map_grid
 
-# TODO it's more efficient to call this for each bomb instead of for each cell
-def get_bombs(bombs, row, col, max_rows, max_cols):
-    num_bombs = 0
-    for row_index in range( max(row-1, 0), min(row+2, max_rows)):
-        for col_index in range( max(col-1, 0), min(col+2, max_cols)):
-            if row_index == row and col_index == col:
-                pass
-            else:
-                if [row_index, col_index] in bombs:
-                    num_bombs += 1
-    return num_bombs
+print(to_string(mine_sweeper([[0,0],[0,1]],3,4)))
 
-# print(to_string(mine_sweeper([[0,0],[0,1]],3,4)))
-
-# print(mine_sweeper([[0, 2], [2, 0]], 3, 3))
+print(to_string(mine_sweeper([[0, 2], [2, 0]], 3, 3)))
 # [[0, 1, -1],
 #  [1, 2, 1],
 #  [-1, 1, 0]]
 
-# print(mine_sweeper([[0, 0], [0, 1], [1, 2]], 3, 4))
+print(to_string(mine_sweeper([[0, 0], [0, 1], [1, 2]], 3, 4)))
 # [[-1, -1, 2, 1],
 #  [2, 3, -1, 1],
 #  [0, 1, 1, 1]]
 
-# print(to_string(mine_sweeper([[1, 1], [1, 2], [2, 2], [4, 3]], 5, 5)))
+print(to_string(mine_sweeper([[1, 1], [1, 2], [2, 2], [4, 3]], 5, 5)))
 # [[1, 2, 2, 1, 0],
 #  [1, -1, -1, 2, 0],
 #  [1, 3, -1, 2, 0],
@@ -154,7 +145,6 @@ def get_bombs(bombs, row, col, max_rows, max_cols):
 # first create a grid by calling mine_sweeper(?!)
 # then pass that list to "click"
 
-# Implement your function below.
 def click(field, num_rows, num_cols, given_i, given_j):
     this_value = field[given_i][given_j]
     if this_value == 0:
@@ -167,20 +157,20 @@ def click(field, num_rows, num_cols, given_i, given_j):
     return field
 
 
-# NOTE: The following input values will be used for testing your solution.
+# # NOTE: The following input values will be used for testing your solution.
 field1 = [[0, 0, 0, 0, 0],
           [0, 1, 1, 1, 0],
           [0, 1, -1, 1, 0]]
 
 print(to_string(click(field1, 3, 5, 2, 2))) # should return:
-# [[0, 0, 0, 0, 0],
-#  [0, 1, 1, 1, 0],
-#  [0, 1, -1, 1, 0]]
+# # [[0, 0, 0, 0, 0],
+# #  [0, 1, 1, 1, 0],
+# #  [0, 1, -1, 1, 0]]
 
 print(to_string(click(field1, 3, 5, 1, 4))) # should return:
-# [[-2, -2, -2, -2, -2],
-#  [-2, 1, 1, 1, -2],
-#  [-2, 1, -1, 1, -2]]
+# # [[-2, -2, -2, -2, -2],
+# #  [-2, 1, 1, 1, -2],
+# #  [-2, 1, -1, 1, -2]]
 
 
 field2 = [[-1, 1, 0, 0],
@@ -189,13 +179,13 @@ field2 = [[-1, 1, 0, 0],
           [0, 0, 1, -1]]
 
 print(to_string(click(field2, 4, 4, 0, 1))) #should return:
-# [[-1, 1, 0, 0],
-#  [1, 1, 0, 0],
-#  [0, 0, 1, 1],
-#  [0, 0, 1, -1]]
+# # [[-1, 1, 0, 0],
+# #  [1, 1, 0, 0],
+# #  [0, 0, 1, 1],
+# #  [0, 0, 1, -1]]
 
 print(to_string(click(field2, 4, 4, 1, 3))) # should return:
-# [[-1, 1, -2, -2],
-#  [1, 1, -2, -2],
-#  [-2, -2, 1, 1],
-#  [-2, -2, 1, -1]]
+# # [[-1, 1, -2, -2],
+# #  [1, 1, -2, -2],
+# #  [-2, -2, 1, 1],
+# #  [-2, -2, 1, -1]]
