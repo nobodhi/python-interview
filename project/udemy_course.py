@@ -108,10 +108,10 @@ def mine_sweeper(bombs: [[int]], rows, cols) -> [[int]]:
                 map_grid[row][col] = get_bombs(bombs, row, col, rows, cols)
     return map_grid
 
-def get_bombs(bombs, row, col, rows, cols):
+def get_bombs(bombs, row, col, max_rows, max_cols):
     num_bombs = 0
-    for row_index in range( max(row-1, 0), rows):
-        for col_index in range( max(col-1, 0), cols):
+    for row_index in range( max(row-1, 0), min(row+2, max_rows)):
+        for col_index in range( max(col-1, 0), min(col+2, max_cols)):
             if row_index == row and col_index == col:
                 pass
             else:
@@ -120,3 +120,20 @@ def get_bombs(bombs, row, col, rows, cols):
     return num_bombs
 
 print(mine_sweeper([[0,0],[0,1]],3,4))
+
+print(mine_sweeper([[0, 2], [2, 0]], 3, 3))
+# [[0, 1, -1],
+#  [1, 2, 1],
+#  [-1, 1, 0]]
+
+print(mine_sweeper([[0, 0], [0, 1], [1, 2]], 3, 4))
+# [[-1, -1, 2, 1],
+#  [2, 3, -1, 1],
+#  [0, 1, 1, 1]]
+
+print(mine_sweeper([[1, 1], [1, 2], [2, 2], [4, 3]], 5, 5))
+# [[1, 2, 2, 1, 0],
+#  [1, -1, -1, 2, 0],
+#  [1, 3, -1, 2, 0],
+#  [0, 1, 2, 2, 1],
+#  [0, 0, 1, -1, 1]]
