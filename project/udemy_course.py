@@ -93,7 +93,30 @@ def non_repeating(given_string):
 
 
 # NOTE: The following input values will be used for testing your solution.
-non_repeating("abcab")  # should return 'c'
-non_repeating("abab")  # should return None
-non_repeating("aabbbc")  # should return 'c'
-non_repeating("aabbdbc")  # should return 'd'
+# non_repeating("abcab")  # should return 'c'
+# non_repeating("abab")  # should return None
+# non_repeating("aabbbc")  # should return 'c'
+# non_repeating("aabbdbc")  # should return 'd'
+
+def mine_sweeper(bombs: [[int]], rows, cols) -> [[int]]:
+    map_grid = [[0 for i in range(cols)] for j in range(rows)]
+    for row in range(rows):
+        for col in range(cols):
+            if [row, col] in bombs:
+                map_grid[row][col] = -1
+            else:
+                map_grid[row][col] = get_bombs(bombs, row, col, rows, cols)
+    return map_grid
+
+def get_bombs(bombs, row, col, rows, cols):
+    num_bombs = 0
+    for row_index in range( max(row-1, 0), rows):
+        for col_index in range( max(col-1, 0), cols):
+            if row_index == row and col_index == col:
+                pass
+            else:
+                if [row_index, col_index] in bombs:
+                    num_bombs += 1
+    return num_bombs
+
+print(mine_sweeper([[0,0],[0,1]],3,4))
