@@ -9,7 +9,7 @@ def rotateMatrix(d):
 
     # loop through the matrix layer by layer
     rows, cols = m.shape
-    top = m.copy()[:1]
+    top = m.copy()[:1, :]
     right = m.copy()[:, cols-1:]
     bottom = m.copy()[rows-1:, :]
     left = m.copy()[:, :1]
@@ -52,3 +52,5 @@ def rotateMatrix(d):
     # (r,c) = right.shape
     # m[rows-1:,:] = np.flip(right.reshape(c,r))
     # print ("\n{}\n".format(m))
+
+rotateMatrix(9)
