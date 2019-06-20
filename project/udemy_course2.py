@@ -4,7 +4,7 @@
 # NOTE: Feel free to use the following function for testing.
 # It converts a 2-dimensional array (a list of lists) into
 # an easy-to-read string format.
-import copy
+# import copy
 
 
 def to_string(given_array):
@@ -53,8 +53,23 @@ a2 = [[1, 2, 3, 4],
       [5, 6, 7, 8],
       [9, 10, 11, 12],
       [13, 14, 15, 16]]
-print(to_string(rotate(a2, 4))) # should return:
+# print(to_string(rotate(a2, 4))) # should return:
 # [[13, 9, 5, 1],
 #  [14, 10, 6, 2],
 #  [15, 11, 7, 3],
 #  [16, 12, 8, 4]]
+
+
+def rotate_in_place(given_array, n):
+    temp = []
+    for loop in range(n//2-1):
+        for index in range(n-loop):
+            print("top->right")
+            print("source", given_array[loop][index+loop])
+            print("target1", given_array[index+loop][n-loop-1])
+            # TODO last value goes into temp
+
+
+    return given_array
+
+print(to_string(rotate_in_place(a2, 4))) # should return:
