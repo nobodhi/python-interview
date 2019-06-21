@@ -23,7 +23,6 @@ def rotate(given_array, n):
     # won't have to create `rotated`.
     # NB we can create slices of the array for a "not quite in place" solution
     # and we can use a single "temp" variable to swap cells in place
-    # TODO can't we swap in place using tuple swap instead?
 
     # outer loop here, this will count which "layer" of the onion we are in
     for loop in range(n//2):
@@ -35,6 +34,8 @@ def rotate(given_array, n):
         print(loop, "left", left)
         print(loop, "bottom", bottom)
         print(loop, "right", right)
+        # TODO rotate top->right->bottom->left
+        # a naive solution is simply perform 4 loops!
 
 
     return given_array
@@ -64,7 +65,8 @@ def rotate_in_place(given_array, n):
     temp = passes = 0
     print(to_string(given_array))
     for loop in range(n//2):
-        passes += 1
+        # we need to track loop+passes because our square shrinks from both ends!
+        passes += 1 
         for index in range(0,n-loop-passes):
             temp = given_array[loop][loop+index]
             # top -> right
