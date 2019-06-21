@@ -18,4 +18,4 @@ def random_array(length):
     return array
 
 # print(list(sequential_array(10)))
-print(random_array(10))
+# print(random_array(10))
