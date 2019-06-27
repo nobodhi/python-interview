@@ -145,8 +145,8 @@ print(to_string(mine_sweeper([[1, 1], [1, 2], [2, 2], [4, 3]], 5, 5)))
 # greedy recursive space filling algo "click" turns adjacent 0's into -2's
 # first create a grid by calling mine_sweeper(?!)
 # then pass that list to "click"
-
 def click(field, num_rows, num_cols, given_i, given_j):
+    """click event in mine_sweeper game"""
     this_value = field[given_i][given_j]
     if this_value == 0:
         field[given_i][given_j] = -2

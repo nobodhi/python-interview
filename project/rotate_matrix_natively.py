@@ -19,25 +19,25 @@ def to_string(given_array):
 # n = # rows = # columns in the given 2d array
 
 def rotate(given_array, n):
-    # rotated = copy.deepcopy(given_array)
-    # NOTE: To solve it in place, write this function so that you
-    # won't have to create `rotated`.
-    # NB we can create slices of the array for a "not quite in place" solution
-    # and we can use a single "temp" variable to swap cells in place
+    """rotate using 4 temp vectors. this is nice if you want to rotate back and forth."""
+    print(to_string(given_array))
 
     # outer loop here, this will count which "layer" of the onion we are in
     for loop in range(n//2):
-        top = [x[loop:n-loop] for x in given_array[loop:loop+1]]
-        left = [x[loop] for x in given_array[loop:n-loop]]
-        bottom = [x[loop:n-loop] for x in given_array[n-loop-1:n-loop]]
-        right = [x[n-loop-1] for x in given_array[loop:n-loop]]
-        print(loop, "top", top)
-        print(loop, "left", left)
-        print(loop, "bottom", bottom)
-        print(loop, "right", right)
-        # TODO rotate top->right->bottom->left
-        # a naive solution is simply perform 4 loops!
 
+        top = [x[loop:n-loop] for x in given_array[loop:loop+1]][0]
+        left = [x[loop] for x in given_array[loop:n-loop]]
+        bottom = [x[loop:n-loop] for x in given_array[n-loop-1:n-loop]][0]
+        right = [x[n-loop-1] for x in given_array[loop:n-loop]]
+
+        for index in range(len(top)): # top->right
+            given_array[loop+index][n-loop-1] = top[index]
+        for index in range(len(right)): # right->bottom
+            given_array[n-loop-1][n-loop-index-1] = right[index]
+        for index in range(len(top)): # bottom->left
+            given_array[loop+index][loop] = bottom[index]
+        for index in range(len(left)): # left->top
+            given_array[loop][loop-index-1] = left[index]
 
     return given_array
 
@@ -55,7 +55,7 @@ a2 = [[1, 2, 3, 4],
       [5, 6, 7, 8],
       [9, 10, 11, 12],
       [13, 14, 15, 16]]
-# print(to_string(rotate(a2, 4))) # should return:
+print(to_string(rotate(a2, 4))) # should return:
 # [[13, 9, 5, 1],
 #  [14, 10, 6, 2],
 #  [15, 11, 7, 3],
@@ -63,12 +63,11 @@ a2 = [[1, 2, 3, 4],
 
 
 def rotate_in_place(given_array, n):
-    temp = passes = 0
+    temp = []
     print(to_string(given_array))
     for loop in range(n//2):
-        # we need to track loop+passes because our square shrinks from both ends!
-        passes += 1 
-        for index in range(0,n-loop-passes):
+        # we need to track an additional loop because our square shrinks from both ends!
+        for index in range(0,n-loop-loop-1):
             temp = given_array[loop][loop+index]
             # top -> right
             given_array[loop+index][n-loop-1], temp = temp, given_array[loop+index][n-loop-1]
@@ -86,4 +85,5 @@ def rotate_in_place(given_array, n):
 
 a3 = rl.sequential_array(9) 
 
-print(to_string(rotate_in_place(a3, 9)))
+# print(to_string(rotate_in_place(a3, 9)))
+# print(to_string(rotate(a3, 9)))
