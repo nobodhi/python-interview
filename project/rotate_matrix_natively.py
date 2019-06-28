@@ -54,11 +54,11 @@ def rotate_by_vectors(given_array, n):
         for index in range(len(right)): 
             given_array[n-loop-1][n-loop-index-1] = right[index]
         # bottom->left
-        for index in range(len(top)): 
+        for index in range(len(bottom)): 
             given_array[loop+index][loop] = bottom[index]
         # left->top
         for index in range(len(left)): 
-            given_array[loop][index] = left[index]
+            given_array[loop][loop+index] = left[index]
 
     return given_array
 
