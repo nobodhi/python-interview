@@ -1,10 +1,10 @@
 # second part of course https://www.udemy.com/11-essential-coding-interview-questions/
+# rotate a square 2D array in place using native python
 
+# import this local file to generate a test array
 import random_list as rl  # pylint: disable=import-error
 
-# NOTE: Feel free to use the following function for testing.
-
-
+# for testing
 def to_string(given_array):
     list_rows = []
     for row in given_array:
@@ -20,7 +20,7 @@ def rotate_swap(given_array, n):
         # we need to track an additional loop because our square shrinks from both ends!
         width = n-loop-loop
         last = n-loop-1
-        for index in range(0, width-1):
+        for index in range(width-1):
             temp = given_array[loop][loop+index]
             # top -> right
             given_array[loop+index][last], temp = temp, given_array[loop+index][last]
