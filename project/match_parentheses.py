@@ -1,3 +1,2 @@
 # determine if a sequence of parentheses is valid
-# note the number of valid permutations is represented by the Catalan sequence.
-
+# use a stack to match parentheses, similar to traversing a BST. 
