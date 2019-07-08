@@ -26,17 +26,21 @@ def create_tree(mapping: dict, head_value: int) -> Node:
     # NOTE head is always the first node in the mapping: list(mapping.keys())[0]
     head = Node(head_value)
     _tree = {head_value: head}  # private dict {int: Node}
+    # NOTE we can do this in one pass if we maintain insertion order (default in 3.6)
     for key, value in mapping.items():
         if len(value) >= 1:
             _tree[value[0]] = Node(value[0])
-            _tree[key].left = _tree[value[0]]
         if len(value) >= 2:
             _tree[value[1]] = Node(value[1])
+    for key, value in mapping.items():
+        if len(value) >= 1:
+            _tree[key].left = _tree[value[0]]
+        if len(value) >= 2:
             _tree[key].right = _tree[value[1]]
     return head
 
 
-help(create_tree)
+# help(create_tree)
 
 # The mapping we're going to use for constructing a tree.
 # {0: [1, 2]} means that 0's left child is 1, and its right
@@ -115,14 +119,18 @@ print(is_bst(head2)) # should return False
 print(is_bst(head3)) # should return True
 print(is_bst(head4))  # should return False
 
-# boom: this is a violation because 25 is greater than 10 and 40 is greater than 30
+# better example: this is a violation because 25 is greater than 10 
 #  head6 = 30
 #        /   \
 #       10     50
 #      /\     /  \
-#     5  20  40  60
+#     5  20  35  60
 #    / \
 #   4  25
+
+mapping6 = {30: [10, 50], 10: [5, 20], 5: [4, 25], 50: [35, 60]}
+head6 = create_tree(mapping6, 30)
+print(is_bst(head6))  # should return False
 
 # moving left set an upper limit
 # check the upper limit when moving right
