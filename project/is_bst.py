@@ -15,7 +15,7 @@ class Node:
 
 
 # NOTE:
-# we shouldn't assume we're given a complete BST, i.e. with an odd number of nodes.
+# we shouldn't assume we're given a complete BST, i.e. with all non-leaf levels filled.
 # to handle any BST, we must check the size of the child list or handle an exception.
 def create_tree(mapping: dict, head_value: int) -> Node:
     """A function for creating a tree.
@@ -23,10 +23,10 @@ def create_tree(mapping: dict, head_value: int) -> Node:
     - mapping (dict): a node-to-node mapping that shows how the tree should be constructed
     - head_value (int): the value that will be used for the head node
     Output (Node):The head node of the resulting tree"""
-    # NOTE head is always the first node in the mapping: list(mapping.keys())[0]
-    head = Node(head_value)
+    
+    head = Node(head_value) # first node in the mapping: list(mapping.keys())[0]
     _tree = {head_value: head}  # private dict {int: Node}
-    # NOTE we can do this in one pass if we maintain insertion order (default in 3.6)
+    # NOTE we can do this in one pass if we maintain insertion order (default in 3.7)
     for key, value in mapping.items():
         if len(value) >= 1:
             _tree[value[0]] = Node(value[0])
