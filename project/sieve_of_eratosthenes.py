@@ -2,22 +2,23 @@
 
 
 def find_primes(max_value):
-    """naive solution. check every cardinal number for prime multiples."""
+    """returns every prime up to a given value."""
 
     # cardinals up to max_value
-    candidates = {a: True for a in range(2, max_value+1)}
-    # sieve = list(filter(lambda f: f <= max_value**0.5, candidates))
-    sieve = [candidate for candidate in candidates if candidate <= max_value**0.5]
-
+    numbers = {a: True for a in range(2, max_value+1)}
+    # sieve = list(filter(lambda f: f <= max_value**0.5, numbers))
+    sieve = [n for n in numbers if n <= max_value**0.5]
+    # set to false multiples of primes starting with 2
     for current in sieve:
-        if candidates[current]:
-            runner = current**2
-            while runner <= max_value:
-                if candidates[runner]:
-                    candidates[runner] = False
-                runner += current
+        if numbers[current]:
+            multiple = current**2
+            while multiple <= max_value:
+                if numbers[multiple]:
+                    numbers[multiple] = False
+                multiple += current
 
-    primes = list(filter(lambda p: candidates[p], candidates))
+    # primes = list(filter(lambda p: numbers[p], numbers))
+    primes = [p for p in numbers if numbers[p]]
     return primes
 
 
