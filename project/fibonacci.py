@@ -12,7 +12,7 @@ def fib(n):
         x, y = y, x + y
     return x
 
-
+ 
 def fib_recursive(n, memo={}):
     """recursive fibonacci reaches maximum recursion after 998 calls"""
     if n in memo:
@@ -25,10 +25,10 @@ def fib_recursive(n, memo={}):
     return result
 
 
-val = 998
-print(fib(val))
-print()
-print(fib_recursive(val))
+# val = 998
+# print(fib(val))
+# print()
+# print(fib_recursive(val))
 
-# make a random assertion
-assert fib(15) == fib_recursive(15) == 987
+# # make a random assertion
+# assert fib(15) == fib_recursive(15) == 987
