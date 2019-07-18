@@ -133,17 +133,17 @@ class Solution:
 # print(result)
 
 
-print(Solution().simple_reverse(321))
-print(Solution().simple_reverse(-321))
-print(Solution().string_reverse(321))
-print(Solution().string_reverse(-321))
+# print(Solution().simple_reverse(321))
+# print(Solution().simple_reverse(-321))
+# print(Solution().string_reverse(321))
+# print(Solution().string_reverse(-321))
 
 # # -1534236469
 # # -2147483412
 # assert Solution().reverse(-1534236469) == 0
 # assert Solution().reverse(-2147483412) == -2143847412
 
-# print(Solution().isPalindrome(121))
+print(Solution().isPalindrome(121))
 
 # print(Solution().romanToInt('MCMLXIII'))  # 1963
 # print(Solution().longestCommonPrefix(["flow","flog","flight"]))
