@@ -64,8 +64,9 @@ def largest_palindrome_number(lo, hi):
                     palindrome = False
                     break
             if palindrome == True:
-                result = True
-                return i*j
+                # print(i, j, val)
+                if i*j > result:
+                    result = i*j
     return result
 # 111**2 = 12321
 
