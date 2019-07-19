@@ -52,22 +52,31 @@ print('largest_prime_factor', largest_prime_factor(600851475143))
 
 # what is the largest palindromic number that is the product of two 3 digit numbers?
 def largest_palindrome_number(lo, hi):
+    """largest palindromic product within a given range (using strings)"""
     result = 0
     for i in reversed(range(lo, hi)):
         for j in reversed(range(lo, hi)):
             val = list(str(i*j))
             # print(i, j, val)
-            palindrome = True
+            is_palindrome = True
             for k in range(len(val)//2 + 1):
                 # print(i, j, k, val, val[k], val[len(val)-1-k])
                 if val[k] != val[len(val)-1-k]:
-                    palindrome = False
+                    is_palindrome = False
                     break
-            if palindrome == True:
+            if is_palindrome:
                 # print(i, j, val)
                 if i*j > result:
                     result = i*j
     return result
 # 111**2 = 12321
 
-print(largest_palindrome_number(100, 1000))
+
+print('largest_palindrome_number', largest_palindrome_number(100, 1000))
+
+
+# what is the smallest positive integer evenly divisible by all integers less than 20?
+def smallest_multiple(n):
+    """smallest positive number that is evenly divisible by every integer less than n"""
+    pass
+# 10 => 2520

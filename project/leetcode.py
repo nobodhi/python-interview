@@ -1,3 +1,4 @@
+# Solution class from leetcode.com
 class Solution:
     def twoSum(self, array, target):
         """find the list indices that sum to a target"""
