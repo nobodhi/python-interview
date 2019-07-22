@@ -150,3 +150,4 @@ print(Solution().isPalindrome(121))
 # print(Solution().longestCommonPrefix(["flow","flog","flight"]))
 # print(Solution().longestCommonPrefix(["flow","flog","flog"]))
 # print(Solution().longestCommonPrefix([]))
+

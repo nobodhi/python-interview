@@ -76,7 +76,31 @@ print('largest_palindrome_number', largest_palindrome_number(100, 1000))
 
 
 # what is the smallest positive integer evenly divisible by all integers less than 20?
-def smallest_multiple(n):
-    """smallest positive number that is evenly divisible by every integer less than n"""
-    pass
-# 10 => 2520
+# NB: the complexity increases with the size of n. optimizations: 
+# only consider even numbers (greater than 2 n)
+# only consider the range from 3 to n (since we know it's even)
+# only consider numbers ending in 0 beyond n = 4
+def smallest_common_multiple(n: int) -> int:
+    """finds the smallest number that divides everything from 1 to n"""
+    # outer loop: iterate index upwards searching for the SCM
+    if n <= 2:
+        return n
+    current = 2*n
+    while True:
+        if n > 4 and current % 10 != 0:
+            current+=2
+        else:
+            for index in range(3, n+1):
+                # print(current, index)
+                if current % index != 0:
+                    break
+                else:
+                    if index == n:
+                        return current
+            if n <= 4:
+                current+=2
+            else:
+                current+=10
+
+print('smallest_common_multiple', smallest_common_multiple(10))
+# print(smallest_common_multiple(20)) 

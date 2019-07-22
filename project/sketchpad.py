@@ -1,21 +1,27 @@
 # derp
 
-# convert an integer to a list of digits without libraries or strings
-x = 100
-print(x)
-loop = 0
-digits = []
-while x > 0:
-    digit = (x // 10**loop) % 10
-    digits.append(digit)
-    x = x - digit * 10**loop
-    print(digit, loop, x, digits)
-    loop += 1
+# the smallest number than evenly divides all integers less than n
+def smallest_common_multiple(n: int) -> int:
+    """finds the smallest number that divides everything from 1 to n"""
+    # outer loop: iterate index upwards searching for the SCM
+    if n <= 2:
+        return n
+    current = 2*n
+    while True:
+        if n > 4 and current % 10 != 0:
+            current+=2
+        else:
+            for index in range(3, n+1):
+                if current % index != 0:
+                    break
+                else:
+                    if index == n:
+                        return current
+            if n <= 4:
+                current+=2
+            else:
+                current+=10
 
-# convert an integer to a list using strings
-y = 100
-print(y)
-z = list(str(y))
-print(z)
-z = list(map(int, str(y))) # for integers
-print(z)
+print(smallest_common_multiple(10))
+print(smallest_common_multiple(20)) 
+
