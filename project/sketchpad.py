@@ -11,10 +11,11 @@ while x > 0:
     x = x - digit * 10**loop
     print(digit, loop, x, digits)
     loop += 1
-length = len(digits)
 
 # convert an integer to a list using strings
 y = 100
 print(y)
-z = list(map(int, str(y)))
+z = list(str(y))
+print(z)
+z = list(map(int, str(y))) # for integers
 print(z)

@@ -77,5 +77,7 @@ length = len(digits)
 # convert an integer to a list using strings
 y = 100
 print(y)
-z = list(map(int, str(y))) # or even simply list(str(y))
+z = list(str(y))
+print(z)
+z = list(map(int, str(y))) # for integers
 print(z)
