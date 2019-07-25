@@ -104,3 +104,11 @@ def smallest_common_multiple(n: int) -> int:
 
 print('smallest_common_multiple', smallest_common_multiple(10))
 # print(smallest_common_multiple(20)) 
+
+# Find the difference between the sum of the squares and the square of the sum of the first n natural numbers.
+def diff_sum_squares(n: int) -> int:
+    """difference between the sum of the squares and the square of the sum of the first n naturals"""
+    return sum([i for i in range(1,n+1)])**2 - sum([i**2 for i in range(1,n+1)])
+
+print('diff_sum_squares', diff_sum_squares(100))
+
