@@ -23,5 +23,5 @@ def find_primes(max_value):
     return primes
 
 
-print(find_primes(100))
+print(find_primes(10001))
 # assert find_primes(50) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]

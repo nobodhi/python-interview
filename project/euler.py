@@ -76,7 +76,7 @@ print('largest_palindrome_number', largest_palindrome_number(100, 1000))
 
 
 # what is the smallest positive integer evenly divisible by all integers less than 20?
-# NB: the complexity increases with the size of n. optimizations: 
+# NB: the complexity increases with the size of n. optimizations:
 # only consider even numbers (greater than 2 n)
 # only consider the range from 3 to n (since we know it's even)
 # only consider numbers ending in 0 beyond n = 4
@@ -98,17 +98,44 @@ def smallest_common_multiple(n: int) -> int:
                 if check_num == n:
                     return current
         if n <= 4:
-            current+=2
+            current += 2
         else:
-            current+=10
+            current += 10
+
 
 print('smallest_common_multiple', smallest_common_multiple(10))
-# print(smallest_common_multiple(20)) 
+# print(smallest_common_multiple(20))
 
 # Find the difference between the sum of the squares and the square of the sum of the first n natural numbers.
+
+
 def diff_sum_squares(n: int) -> int:
     """difference between the sum of the squares and the square of the sum of the first n naturals"""
-    return sum([i for i in range(1,n+1)])**2 - sum([i**2 for i in range(1,n+1)])
+    return sum([i for i in range(1, n+1)])**2 - sum([i**2 for i in range(1, n+1)])
+
 
 print('diff_sum_squares', diff_sum_squares(100))
 
+
+def find_nth_prime(n: int) -> int:
+    """modified sieve checks every natural number against all previous primes to find the nth prime"""
+    assert n >= 1
+    current = 2
+    primes = [current]
+    if n == 1:
+        return current
+    # add 1 continuously in a loop checking if the number divides any of the previously found primes
+    while len(primes) < n:
+        current += 1
+        is_prime = True
+        for prime in primes:
+            if current % prime == 0:
+                is_prime = False
+                break # not a prime
+        if is_prime:
+            primes.append(current)
+            # print(primes)
+    return primes[-1]
+
+
+print('find_nth_prime', find_nth_prime(10001))
