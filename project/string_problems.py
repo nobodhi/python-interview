@@ -81,3 +81,5 @@ z = list(str(y))
 print(z)
 z = list(map(int, str(y))) # for integers
 print(z)
+digits = map(int,list(str(y))) # <map object at 0x000002B7F9049780>
+print(digits)
