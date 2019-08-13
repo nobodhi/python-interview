@@ -77,35 +77,25 @@ print('largest_palindrome_number', largest_palindrome_number(10, 100))
 
 
 # what is the smallest positive integer evenly divisible by all integers less than 20?
-# NB: the complexity increases with the size of n. optimizations:
-# only consider even numbers (greater than 2 n)
-# only consider the range from 3 to n (since we know it's even)
-# only consider numbers ending in 0 beyond n = 4
 def smallest_common_multiple(n: int) -> int:
     """finds the smallest number that divides everything from 1 to n"""
-    if n <= 2:
-        return n
-    current = 2*n
-    # outer loop: iterate "current" upwards searching for the SCM
-    while True:
-        if n > 4 and current % 10 != 0:
-            current = n//10 * 10 + 10
-        # inner loop: iterate "check_num" checking for divisibility
-        for check_num in range(3, n+1):
-            # print(current, check_num)
-            if current % check_num != 0:
-                break
-            else:
-                if check_num == n:
-                    return current
-        if n <= 4:
-            current += 2
-        else:
-            current += 10
+    sum = 1
+    for i in range(1, n+1):
+        sum*=i
+    # print(i, sum)
+    # this number is a multiple of the LCM.
+    for i in range(n, sum//2, n):
+        if (sum % i == 0):
+            for factor in range(3, n+1):
+                if i % factor != 0:
+                    break # not the scm
+                if factor == n:
+                    return i
+    return sum # default
+
+print('smallest_common_multiple', smallest_common_multiple(20))
 
 
-print('smallest_common_multiple', smallest_common_multiple(10))
-# print(smallest_common_multiple(20))
 
 
 # Find the difference between the sum of the squares and the square of the sum of the first n natural numbers.
@@ -143,11 +133,10 @@ print('find_nth_prime', find_nth_prime(1001))
 
 
 # given an integer find the subsequence of a given length having the greatest product
-def greatest_sequence_product(val: int, n:int) -> dict:
-    """find the n-length sub-sequence of digits having the greatest product"""
+def greatest_sequence_product(val: int, n:int) -> (int, list):
+    """given an integer find the subsequence of a given length having the greatest product"""
     digits = list(map(int, str(val)))
     max_product = 0
-    result = {}
     for index in range(len(digits)):
         sequence = digits[index:index+n]
         if len(sequence) < n:
@@ -157,11 +146,19 @@ def greatest_sequence_product(val: int, n:int) -> dict:
             product*=s
         if max_product < product:
             max_product = product
-            result = {max_product, str(sequence)} 
         # print(index, sequence, product, max_product)
-    return result
+    return max_product, sequence
 
 
 # val = 1234567890
 val = 7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450
 print('greatest_sequence_product', greatest_sequence_product(val, 13)) # 13
+
+
+def pythagorean_triplet(n: int) -> ((int, int, int), int):
+    """find the Pythagorean triplet whose sum equal n and return their product. """
+    return ((n,n,n),n)
+
+
+print('pythagorean_triplet', pythagorean_triplet(1000))
+
