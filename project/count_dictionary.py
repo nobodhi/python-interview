@@ -2,9 +2,19 @@
 
 names = ['x', 'y', 'z']
 coords = [[1, 2], [3, 4], [5, 6]]
-
 d = dict(zip(names, coords))
 print(d)
+l = list(zip(names,coords))
+print(l) # tuples
+
+# using pandas Series to create a dictionary
+
+names = ['x', 'y', 'z']
+coords = [[1, 2], [3, 4], [5, 6]]
+import pandas as pd
+s = pd.Series(index=names, data=coords)
+h = dict(s)
+print(h)
 
 # auto count into dictionary
 

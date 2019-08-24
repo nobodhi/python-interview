@@ -72,8 +72,7 @@ def largest_palindrome_number(lo, hi):
 # 111**2 = 12321
 
 
-print('largest_palindrome_number', largest_palindrome_number(10, 100))
-# print('largest_palindrome_number', largest_palindrome_number(100, 1000))
+print('largest_palindrome_number', largest_palindrome_number(100, 1000))
 
 
 # 5. What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
@@ -83,7 +82,6 @@ def find_sequence_scm(n: int) -> int:
     factorial = 1
     for i in range(2, n+1):
         factorial*=i
-    # print(i, factorial)
     # this number is a multiple of the LCM.
     for i in range(n, factorial, n):
         if (factorial % i == 0):
@@ -108,17 +106,20 @@ print('diff_sum_squares', diff_sum_squares(100))
 
 
 # 7. What is the 10001st prime number?
-# SLOW
+# SLOW. (NP)
 def find_nth_prime(n: int) -> int:
     """modified sieve checks every natural number against all previous primes to find the nth prime"""
-    assert n >= 1
-    current = 2
+    assert n >= 2
+    current = 3
     primes = [current]
     if n == 1:
         return current
     # add 1 continuously in a loop checking if the number divides any of the previously found primes
     while len(primes) < n:
-        current += 1
+        if current == 2:
+            current += 1
+        else:
+            current += 2
         is_prime = True
         for prime in primes:
             if current % prime == 0:
@@ -130,7 +131,6 @@ def find_nth_prime(n: int) -> int:
     return primes[-1]
 
 
-# print('find_nth_prime', find_nth_prime(1001))
 print('find_nth_prime', find_nth_prime(10001))
 
 
@@ -160,7 +160,9 @@ print('greatest_sequence_product', greatest_sequence_product(val, 13))  # 13
 # 9. Find the Pythagorean triplet for which a + b + c = 1000 and return its product.
 def pythagorean_triplet(n: int) -> ((int, int, int), int):
     """find the Pythagorean triplet whose sum equal n and return its product. """
-    return ((n, n, n), n)
+    # brute force: we know a + b + c = 1000 and a^2 + b^2 = c^2
+    # try every c with every b and then with every a
+    return [((a,b,c), a*b*c) for a in range(n+1) for b in range(a) for c in range(b) if a*a == b*b + c*c and a + b + c == n]
 
 
 print('pythagorean_triplet', pythagorean_triplet(1000))
