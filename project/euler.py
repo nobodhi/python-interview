@@ -81,16 +81,16 @@ def find_sequence_scm(n: int) -> int:
     """finds the smallest number that divides everything from 1 to n"""
     factorial = 1
     for i in range(2, n+1):
-        factorial*=i
+        factorial *= i
     # this number is a multiple of the LCM.
     for i in range(n, factorial, n):
         if (factorial % i == 0):
             for factor in range(2, n+1):
                 if i % factor != 0:
-                    break # not the scm
+                    break  # not the scm
                 if factor == n:
                     return i
-    return factorial # default
+    return factorial  # default
 
 
 print('find_sequence_scm', find_sequence_scm(20))
@@ -161,8 +161,18 @@ print('greatest_sequence_product', greatest_sequence_product(val, 13))  # 13
 def pythagorean_triplet(n: int) -> ((int, int, int), int):
     """find the Pythagorean triplet whose sum equal n and return its product. """
     # brute force: we know a + b + c = 1000 and a^2 + b^2 = c^2
-    # try every c with every b and then with every a
-    return [((a,b,c), a*b*c) for a in range(n+1) for b in range(a) for c in range(b) if a*a == b*b + c*c and a + b + c == n]
+    return [((a, b, c), a*b*c) for c in reversed(range(n-1))
+            for b in reversed(range(c))
+            for a in reversed(range(b))
+            if a*a + b*b == c*c and a + b + c == n]
 
 
 print('pythagorean_triplet', pythagorean_triplet(1000))
+
+# 10. Find the sum of the primes less than two million.
+
+def sum_of_primes(n: int) -> int:
+    """return the sum of all primes less than n"""
+    pass
+
+print('sum_of_primes', sum_of_primes(2000000))
