@@ -1,5 +1,4 @@
-# second part of course https://www.udemy.com/11-essential-coding-interview-questions/
-# determine if a given tree is a BSTFF
+# determine if a given tree is a BST
 
 # Use this class to create binary trees.
 

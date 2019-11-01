@@ -1,4 +1,3 @@
-# second part of course https://www.udemy.com/11-essential-coding-interview-questions/
 # find the nth element of a linked list
 
 # Use this class to create linked lists.

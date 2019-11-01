@@ -1,4 +1,4 @@
-# udemy course https://www.udemy.com/11-essential-coding-interview-questions/
+# https://www.udemy.com/11-essential-coding-interview-questions/
 
 # NOTE: Feel free to use the following function for testing.
 # It converts a 2-dimensional array (a list of lists) into
@@ -10,7 +10,6 @@ def to_string(given_array):
     return '[' + ',\n '.join(list_rows) + ']\n'
 
 
-# udemy course 11-essential-coding-interview-questions
 
 # find the most common value of a list
 # using a dictionary and list comprehension
@@ -26,7 +25,7 @@ def get_most_common(numbers: [int]):
 # print(get_most_common([]))
 
 
-# find the common elements of two lists - udemy
+# find the common elements of two lists
 A = [1, 3, 4, 6, 7, 9]
 B = [1, 2, 4, 5, 9, 10]
 

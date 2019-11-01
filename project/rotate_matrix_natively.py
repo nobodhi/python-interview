@@ -1,4 +1,3 @@
-# second part of course https://www.udemy.com/11-essential-coding-interview-questions/
 # rotate a square 2D array in place using native python
 
 # import this local file to generate a test array
