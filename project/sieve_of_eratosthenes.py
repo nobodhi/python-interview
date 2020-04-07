@@ -1,7 +1,4 @@
 # sieve of eratosthenes O(n log log n)
-# NB any smaller multiple of a prime greater than n**2
-# will have already been eliminated in a previous pass
-# therefore we only need to check primes up to n**0.5.
 
 
 def find_primes(max_value):

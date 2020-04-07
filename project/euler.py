@@ -181,7 +181,6 @@ def find_primes(max_value):
 
     # NOTE: dict is exponentially faster than list
     numbers = {a: True for a in range(2, max_value+1)}
-    # sieve = list(filter(lambda f: f <= max_value**0.5, numbers))
     sieve = [n for n in numbers if n <= max_value**0.5]
     for current in sieve:
         if numbers[current]:
@@ -190,7 +189,6 @@ def find_primes(max_value):
                 if numbers[prime_multiple]:
                     numbers[prime_multiple] = False
                 prime_multiple += current
-    # primes = list(filter(lambda p: numbers[p], numbers))
     primes = [p for p in numbers if numbers[p]]
     return primes
 
