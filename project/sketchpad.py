@@ -9,7 +9,8 @@ def matrix_search(my_list: list) -> int:
     #         print(n,my_list[n])
     arr = np.array(my_list)
     (x, y) = get_stats(arr)
-    crawl_matrix(arr, x)
+    gen = crawl_matrix(arr, x) # just testing yield generator
+    print(list(gen))
     return np.array(my_matrix)
 
 my_matrix = [
@@ -62,7 +63,29 @@ def crawl_matrix(arr, n):
     for x in range(n):
         print(arr[x,0], arr[x,n-1]) # first, last
         for y in range(n):
-            print(arr[x,y])
+            yield(arr[x,y])
+            perform_vertical_check = False
+            if (x+3 <= n-1):
+                perform_vertical_check = True
+                check_vertical(arr, x,y)
+                if (y-3 >= 0):
+                    check_backward_diag(arr, x,y)
+            if (y+3 <= n-1):
+                check_horizontal(arr, x,y)
+                if (perform_vertical_check): 
+                    check_forward_diag(arr, x,y)
+
+def check_vertical(arr, x, y):
+    print("check_vertical", x, y, arr[x,y])
+
+def check_backward_diag(arr, x, y):
+    print("check_backward_diag", x, y, arr[x,y])
+
+def check_horizontal(arr, x, y):
+    print("check_horizontal", x, y, arr[x,y])
+
+def check_forward_diag(arr, x, y):
+    print("check_forward_diag", x, y, arr[x,y])
 
 start = time.time()
 print(matrix_search(my_matrix))
