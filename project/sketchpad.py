@@ -8,10 +8,9 @@ def matrix_search(my_list: list) -> int:
     #     if n >= 0:
     #         print(n,my_list[n])
     arr = np.array(my_list)
-    (x, y) = get_stats(arr)
-    gen = crawl_matrix(arr, x) # just testing yield generator
-    print(list(gen))
-    return np.array(my_matrix)
+    (x, y) = arr.shape
+    print(arr)
+    return crawl_matrix(arr, x) # just testing yield generator
 
 my_matrix = [
 [ 8,  2, 22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8],
@@ -37,56 +36,81 @@ my_matrix = [
 ]
 
 def get_stats(arr):
-    # import numpy as np
-    # # Printing type of arr object
-    # print("Array is of type: ", type(arr))
-    # # Printing array dimensions (axes)
-    # print("No. of dimensions: ", arr.ndim)
-    # # Printing shape of array
-    # print("Shape of array: ", arr.shape)
-    # # Printing size (total number of elements) of array
-    # print("Size of array: ", arr.size)
-    # # Printing size (total number of elements) of array
-    # print("Rows of array: ", np.size(arr, 0))
-    # # Printing size (total number of elements) of array
-    # print("Columns of array: ", np.size(arr, 1))
-    # # Printing type of elements in array
-    # print("Array stores elements of type: ", arr.dtype)
+    import numpy as np
+    # Printing type of arr object
+    print("Array is of type: ", type(arr))
+    # Printing array dimensions (axes)
+    print("No. of dimensions: ", arr.ndim)
+    # Printing shape of array
+    print("Shape of array: ", arr.shape)
+    # Printing size (total number of elements) of array
+    print("Size of array: ", arr.size)
+    # Printing size (total number of elements) of array
+    print("Rows of array: ", np.size(arr, 0))
+    # Printing size (total number of elements) of array
+    print("Columns of array: ", np.size(arr, 1))
+    # Printing type of elements in array
+    print("Array stores elements of type: ", arr.dtype)
     (x, y) = arr.shape # we could check here that the array is square
-    assert x == y
-
     return (x, y)
 
 def crawl_matrix(arr, n):
     import numpy as np
-    print("crawling matrix")
+    max_product = 0
     for x in range(n):
-        print(arr[x,0], arr[x,n-1]) # first, last
         for y in range(n):
-            yield(arr[x,y])
             perform_vertical_check = False
             if (x+3 <= n-1):
                 perform_vertical_check = True
-                check_vertical(arr, x,y)
+                max_product = check_vertical(arr, x, y, max_product)
                 if (y-3 >= 0):
-                    check_backward_diag(arr, x,y)
+                    max_product = check_backward_diag(arr, x, y, max_product)
             if (y+3 <= n-1):
-                check_horizontal(arr, x,y)
+                max_product = check_horizontal(arr, x, y, max_product)
                 if (perform_vertical_check): 
-                    check_forward_diag(arr, x,y)
+                    max_product = check_forward_diag(arr, x, y, max_product)
+    return max_product
 
-def check_vertical(arr, x, y):
-    print("check_vertical", x, y, arr[x,y])
+def check_vertical(arr, x, y, max_product):
+    product = arr[x,y]
+    for i in range(x+1, x+4):
+        product *= arr[i, y]
+        if (product > max_product):
+            max_product = product
+            print("vertical", x, y, arr[x,y], "max_product", max_product)
+    return max_product
 
-def check_backward_diag(arr, x, y):
-    print("check_backward_diag", x, y, arr[x,y])
+def check_backward_diag(arr, x, y, max_product):
+    product = arr[x, y]
+    j = y
+    for i in range(x+1, x+4):
+        j -= 1
+        product *= arr[i, j]
+        if (product > max_product):
+            max_product = product
+            print("back diag", x, y, arr[x,y], "max_product", max_product)
+    return max_product
 
-def check_horizontal(arr, x, y):
-    print("check_horizontal", x, y, arr[x,y])
+def check_horizontal(arr, x, y, max_product):
+    product = arr[x, y]
+    for j in range(y+1, y+4):
+        product *= arr[x, j]
+        if (product > max_product):
+            max_product = product
+            print("horizontal", x, y, arr[x,y], "max_product", max_product)
+    return max_product
 
-def check_forward_diag(arr, x, y):
-    print("check_forward_diag", x, y, arr[x,y])
+def check_forward_diag(arr, x, y, max_product):
+    product = arr[x, y]
+    j = y
+    for i in range(x+1, x+4):
+        j += 1
+        product *= arr[i, j]
+        if (product > max_product):
+            max_product = product
+            print("fwd diag", x, y, arr[x,y], "max_product", max_product)
+    return max_product
 
 start = time.time()
-print(matrix_search(my_matrix))
+print("matrix max product", matrix_search(my_matrix))
 print(round(time.time() - start, 2), "seconds elapsed")
