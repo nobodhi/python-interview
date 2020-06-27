@@ -1,26 +1,15 @@
 import time
 start = time.time()
 
-def matrix_search(l: list) -> int:
+def matrix_search(my_list: list) -> int:
     import numpy as np
-    for n in range(len(l)):
-        if n >= 0:
-            print(n,l[n])
-    arr = np.array(my_matrix)
-    # Printing type of arr object
-    print("Array is of type: ", type(arr))
-    # Printing array dimensions (axes)
-    print("No. of dimensions: ", arr.ndim)
-    # Printing shape of array
-    print("Shape of array: ", arr.shape)
-    # Printing size (total number of elements) of array
-    print("Size of array: ", arr.size)
-    # Printing size (total number of elements) of array
-    print("Rows of array: ", np.size(arr, 0))
-    # Printing size (total number of elements) of array
-    print("Columns of array: ", np.size(arr, 1))
-    # Printing type of elements in array
-    print("Array stores elements of type: ", arr.dtype)
+    # # displaying the list of lists as an array.
+    # for n in range(len(my_list)):
+    #     if n >= 0:
+    #         print(n,my_list[n])
+    arr = np.array(my_list)
+    (x, y) = get_stats(arr)
+    crawl_matrix(arr, x)
     return np.array(my_matrix)
 
 my_matrix = [
@@ -46,7 +35,35 @@ my_matrix = [
 [ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48]
 ]
 
+def get_stats(arr):
+    # import numpy as np
+    # # Printing type of arr object
+    # print("Array is of type: ", type(arr))
+    # # Printing array dimensions (axes)
+    # print("No. of dimensions: ", arr.ndim)
+    # # Printing shape of array
+    # print("Shape of array: ", arr.shape)
+    # # Printing size (total number of elements) of array
+    # print("Size of array: ", arr.size)
+    # # Printing size (total number of elements) of array
+    # print("Rows of array: ", np.size(arr, 0))
+    # # Printing size (total number of elements) of array
+    # print("Columns of array: ", np.size(arr, 1))
+    # # Printing type of elements in array
+    # print("Array stores elements of type: ", arr.dtype)
+    (x, y) = arr.shape # we could check here that the array is square
+    assert x == y
+
+    return (x, y)
+
+def crawl_matrix(arr, n):
+    import numpy as np
+    print("crawling matrix")
+    for x in range(n):
+        print(arr[x,0], arr[x,n-1]) # first, last
+        for y in range(n):
+            print(arr[x,y])
 
 start = time.time()
-print('matrix_search\n', matrix_search(my_matrix))
+print(matrix_search(my_matrix))
 print(round(time.time() - start, 2), "seconds elapsed")
