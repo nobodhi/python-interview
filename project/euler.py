@@ -76,7 +76,6 @@ print('largest_palindrome_number', largest_palindrome_number(100, 1000))
 
 
 # 5. What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-# SLOW. O(n!)
 def find_sequence_scm(n: int) -> int:
     """finds the smallest number that divides everything from 1 to n"""
     factorial = 1
@@ -106,7 +105,6 @@ print('diff_sum_squares', diff_sum_squares(100))
 
 
 # 7. What is the 10001st prime number?
-# SLOW. (NP)
 def find_nth_prime(n: int) -> int:
     """modified sieve checks every natural number against all previous primes to find the nth prime"""
     assert n >= 2
@@ -166,8 +164,8 @@ def pythagorean_triplet(n: int) -> ((int, int, int), int):
             for a in reversed(range(b))
             if a*a + b*b == c*c and a + b + c == n]
 
-
-print('pythagorean_triplet', pythagorean_triplet(12)) 
+# [((200, 375, 425), 31875000)]
+print('pythagorean_triplet', pythagorean_triplet(12)) # e.g. 12. TODO very slow!
 
 # 10. Find the sum of the primes less than two million.
 
@@ -200,7 +198,7 @@ def matrix_search(my_list: list) -> int:
     import numpy as np
     arr = np.array(my_list)
     (x, y) = arr.shape
-    print(arr)
+    # print(arr)
     return crawl_matrix(arr, x) 
 
 def crawl_matrix(arr, n):
@@ -226,7 +224,7 @@ def check_vertical(arr, x, y, max_product):
         product *= arr[i, y]
         if (product > max_product):
             max_product = product
-            print("vertical", x, y, arr[x,y], "max_product", max_product)
+            # print("vertical", x, y, arr[x,y], "max_product", max_product)
     return max_product
 
 def check_backward_diag(arr, x, y, max_product):
@@ -237,7 +235,7 @@ def check_backward_diag(arr, x, y, max_product):
         product *= arr[i, j]
         if (product > max_product):
             max_product = product
-            print("back diag", x, y, arr[x,y], "max_product", max_product)
+            # print("back diag", x, y, arr[x,y], "max_product", max_product)
     return max_product
 
 def check_horizontal(arr, x, y, max_product):
@@ -246,7 +244,7 @@ def check_horizontal(arr, x, y, max_product):
         product *= arr[x, j]
         if (product > max_product):
             max_product = product
-            print("horizontal", x, y, arr[x,y], "max_product", max_product)
+            # print("horizontal", x, y, arr[x,y], "max_product", max_product)
     return max_product
 
 def check_forward_diag(arr, x, y, max_product):
@@ -257,7 +255,7 @@ def check_forward_diag(arr, x, y, max_product):
         product *= arr[i, j]
         if (product > max_product):
             max_product = product
-            print("fwd diag", x, y, arr[x,y], "max_product", max_product)
+            # print("fwd diag", x, y, arr[x,y], "max_product", max_product)
     return max_product
 
 my_matrix = [
