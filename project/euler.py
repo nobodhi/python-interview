@@ -158,14 +158,18 @@ print('greatest_sequence_product', greatest_sequence_product(val, 13))  # 13
 # 9. Find the Pythagorean triplet for which a + b + c = 1000 and return its product.
 def pythagorean_triplet(n: int) -> ((int, int, int), int):
     """find the Pythagorean triplet whose sum equal n and return its product. """
-    # brute force: we know a + b + c = 1000 and a^2 + b^2 = c^2
-    return [((a, b, c), a*b*c) for c in reversed(range(n-1))
-            for b in reversed(range(c))
-            for a in reversed(range(b))
-            if a*a + b*b == c*c and a + b + c == n]
+    import math
+    for c in reversed(range(int(math.sqrt(n)), n//2)):
+        for b in reversed(range(1, c)):
+            a = n - c - b
+            if a > c:
+                break
+            # print("c", c, "b", b, "a", a)
+            if (c**2 == a**2 + b**2):
+                return (a, b, c), a*b*c
 
 # [((200, 375, 425), 31875000)]
-print('pythagorean_triplet', pythagorean_triplet(12)) # e.g. 12. TODO very slow!
+print('pythagorean_triplet', pythagorean_triplet(1000))
 
 # 10. Find the sum of the primes less than two million.
 
