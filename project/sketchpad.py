@@ -22,5 +22,5 @@ def pythagorean_triplet(n: int) -> ((int, int, int), int):
 
 
 start = time.time()
-print('pythagorean_triplet', pythagorean_triplet(12)) # e.g. 12. TODO very slow!
+print('pythagorean_triplet', pythagorean_triplet(1000)) # e.g. 12. TODO very slow!
 print(round(time.time() - start, 2), "seconds elapsed")
