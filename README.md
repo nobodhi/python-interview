@@ -1,6 +1,6 @@
 # README Boilerplate
 
-A template of README best practices to make your README simple to understand and easy to use. 
+A collection of simple Python scripts including typical interview questions on algorithms and data structures.
 
 ## Table of Contents
 
@@ -11,33 +11,21 @@ A template of README best practices to make your README simple to understand and
 
 ## Installation
 
-Download to your project directory, add `README.md`, and commit:
+To clone into a local project folder:
 
 ```sh
-curl https://raw.githubusercontent.com/josebrwn/sample-python/master/README.boilerplate.md --output README.md 
-git add README.md
-git commit -m "Use README Boilerplate"
+git clone https://github.com/josebrwn/python-interview.git
 ```
 
 ## Usage
 
-Replace the contents of `README.md` with your project's:
+Scripts are located in the [project](https://github.com/josebrwn/python-interview/tree/master/project) folder. There are also [tests](https://github.com/josebrwn/python-interview/tree/master/tests) and a `data` folder.
 
-- Name
-- Description
-- Installation instructions
-- Usage instructions
-- Support instructions
-- Contributing instructions
-
-Feel free to remove any sections that aren't applicable to your project.
 
 ## Support
 
-Please [open an issue](https://github.com/josebrwn/sample-python/issues/new) for support.
+Please [open an issue](https://github.com/josebrwn/python-interview/issues/new) for support.
 
 ## Contributing
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/josebrwn/sample-python/compare/).
-
-Forked from [readme-boilerplate](https://github.com/fraction/readme-boilerplate).
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/josebrwn/python-interview/compare/).
