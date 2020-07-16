@@ -19,7 +19,7 @@ git clone https://github.com/josebrwn/python-interview.git
 
 ## Usage
 
-Scripts are located in the [project](https://github.com/josebrwn/python-interview/tree/master/project) folder. There are also [tests](https://github.com/josebrwn/python-interview/tree/master/tests) and a `data` folder.
+Scripts are located in the [project](https://github.com/josebrwn/python-interview/tree/master/project) folder. There are also `tests` and a [data](https://github.com/josebrwn/python-interview/tree/master/data) folder.
 
 
 ## Support
