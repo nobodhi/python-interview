@@ -1,4 +1,3 @@
-# Solution class from leetcode.com
 class Solution:
     def twoSum(self, array, target):
         """find the list indices that sum to a target"""
@@ -128,6 +127,54 @@ class Solution:
                 break
         return result
 
+    def count_repeated_words(self, s) -> dict:
+        '''returns any repeated words in a string'''
+        stop_chars = ',.'
+        # strip out stop characters
+        for char in stop_chars:
+            if char in s:
+                s = s.replace(char, '')
+        # count each word into a dictionary
+        counts = {}
+        words = s.split()
+        for word in words:
+            if word in counts:
+                counts[word] += 1
+            else:
+                counts[word] = 1
+        return [word for word in counts if counts[word] > 1]
+    
+    def square_sorted_list(self, l) -> list:
+        '''takes a sorted int list and returns a sorted list of their squares'''
+        # difficutly is the squares may not be in order. so, take advantage
+        # of the initial sorting. e.g. [-6, -4, 1, 2, 3, 7, 9]
+        if len(l) == 0:
+            return []
+        result = []
+        pointer_left = 0
+        pointer_right = len(l)-1
+        print("l", l)
+        while pointer_right - pointer_left >= 0:
+            # compare left and right items and return the square of the larger
+            # and decrement or increment accordingly
+            if abs(l[pointer_left]) >= abs(l[pointer_right]):
+                if result == [] or abs(l[pointer_left]) >= result[-1]:
+                    result.append(l[pointer_left]**2)
+                    print("left is greater, appending",  l[pointer_left],  l[pointer_right], result)
+                else:
+                    result.insert(0, l[pointer_left]**2)
+                    print("left is greater, inserting",  l[pointer_left],  l[pointer_right], result)
+                pointer_left += 1
+            else:
+                if result == [] or abs(l[pointer_right]) >= result[-1]:
+                    result.append(l[pointer_right]**2)
+                    print("right is greater, appending", l[pointer_left],  l[pointer_right], result)
+                else:
+                    result.insert(0, l[pointer_right]**2)
+                    print("right is greater, inserting", l[pointer_left],  l[pointer_right], result)
+                pointer_right -= 1
+        return result
+
 # nums = [11, 2, 7, 15]
 # target = 9
 # result = Solution().twoSum(nums, target)
@@ -144,10 +191,15 @@ class Solution:
 # assert Solution().reverse(-1534236469) == 0
 # assert Solution().reverse(-2147483412) == -2143847412
 
-print(Solution().isPalindrome(121))
+# print(Solution().isPalindrome(121))
 
 # print(Solution().romanToInt('MCMLXIII'))  # 1963
 # print(Solution().longestCommonPrefix(["flow","flog","flight"]))
 # print(Solution().longestCommonPrefix(["flow","flog","flog"]))
 # print(Solution().longestCommonPrefix([]))
 
+s = 'here is a word, and here is another word.'
+print(Solution().count_repeated_words(s))
+
+print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7]))
+print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7, 9]))

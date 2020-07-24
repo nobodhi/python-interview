@@ -3,7 +3,7 @@
 
 
 def fib(n):
-    """the pythonic approach - hack the first x value to be 0"""
+    """the pythonic approach - consider the list index to begin at 0"""
     x, y = 0, 1
     for _ in range(n):
         # print(_, x, y)
@@ -12,7 +12,8 @@ def fib(n):
 
  
 def fib_recursive(n, memo={}):
-    """recursive fibonacci reaches maximum recursion after 998 calls"""
+    """memoized recursion using a dictionary. consider the index to begin at 1.
+    Note: some version of python reach a maximum recursion after 1000 calls"""
     if n in memo:
         return memo[n]
     if n <= 2:

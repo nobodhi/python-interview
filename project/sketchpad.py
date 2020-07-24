@@ -1,21 +1,24 @@
 import time
 start = time.time()
 
-# 9. Find the Pythagorean triplet for which a + b + c = 1000 and return its product.
-def pythagorean_triplet(n: int) -> ((int, int, int), int):
-    """find the Pythagorean triplet whose sum equal n and return its product. """
-    import math
-    for c in reversed(range(int(math.sqrt(n)), n//2)):
-        for b in reversed(range(1, c)):
-            a = n - c - b
-            if a > c:
-                break
-            # print("c", c, "b", b, "a", a)
-            if (c**2 == a**2 + b**2):
-                return (a, b, c), a*b*c
+def count_words(str):
+    stop_chars = ',.'
+    # strip out stop characters
+    for char in stop_chars:
+        if char in str:
+            str = str.replace(char, '')
+    # count each word into a dictionary
+    counts = {}
+    words = str.split()
+    for word in words:
+        if word in counts:
+            counts[word] += 1
+        else:
+            counts[word] = 1
+    return [word for word in counts if counts[word] > 1]
 
 
 start = time.time()
-py_triplet = pythagorean_triplet(1000)
-print('pythagorean_triplet', py_triplet)
+string = 'here is a word, and here is another word.'
+print('count words', count_words(string))
 print(round(time.time() - start, 2), "seconds elapsed")
