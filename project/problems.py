@@ -162,23 +162,23 @@ class Solution:
                 pointer_right -= 1
         return result
 
-def recursive_square_sorted_list(l, memo = []):
-    '''recursively takes a sorted list and returns a sorted list of their squares'''
-    if len(l) == 0:
-        return []
-    # base case
-    if len(l) == 1:
-        memo.insert(0, l[0]**2)
-        return memo
-    # recursive case
-    else:
-        if abs(l[0]) >= abs(l[-1]):
+    def recursive_square_sorted_list(self, l, memo = []):
+        '''recursively takes a sorted list and returns a sorted list of their squares'''
+        if len(l) == 0:
+            return []
+        # base case
+        if len(l) == 1:
             memo.insert(0, l[0]**2)
-            recursive_square_sorted_list(l[1:], memo)
+            return memo
+        # recursive case
         else:
-            memo.insert(0, l[-1]**2)
-            recursive_square_sorted_list(l[:-1], memo)
-    return memo
+            if abs(l[0]) >= abs(l[-1]):
+                memo.insert(0, l[0]**2)
+                self.recursive_square_sorted_list(l[1:], memo)
+            else:
+                memo.insert(0, l[-1]**2)
+                self.recursive_square_sorted_list(l[:-1], memo)
+        return memo
 
 # nums = [11, 2, 7, 15]
 # target = 9
@@ -210,4 +210,4 @@ print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7]))
 # print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7, 9]))
 # print('square sorted list', Solution().square_sorted_list([-6, -4]))
 # print('square sorted list', Solution().square_sorted_list([-6]))
-print('recursive square sorted list', recursive_square_sorted_list([-6, -4, 1, 2, 3, 7]))
+print('recursive square sorted list', Solution().recursive_square_sorted_list([-6, -4, 1, 2, 3, 7]))
