@@ -146,34 +146,39 @@ class Solution:
     
     def square_sorted_list(self, l) -> list:
         '''takes a sorted int list and returns a sorted list of their squares'''
-        # difficutly is the squares may not be in order. so, take advantage
-        # of the initial sorting. e.g. [-6, -4, 1, 2, 3, 7, 9]
+        # the squares may not be in order!
         if len(l) == 0:
             return []
         result = []
         pointer_left = 0
         pointer_right = len(l)-1
-        print("l", l)
         while pointer_right - pointer_left >= 0:
-            # compare left and right items and return the square of the larger
-            # and decrement or increment accordingly
+            # compare left and right items and insert the square of the larger
             if abs(l[pointer_left]) >= abs(l[pointer_right]):
-                if result == [] or abs(l[pointer_left]) >= result[-1]:
-                    result.append(l[pointer_left]**2)
-                    print("left is greater, appending",  l[pointer_left],  l[pointer_right], result)
-                else:
-                    result.insert(0, l[pointer_left]**2)
-                    print("left is greater, inserting",  l[pointer_left],  l[pointer_right], result)
+                result.insert(0, l[pointer_left]**2)
                 pointer_left += 1
             else:
-                if result == [] or abs(l[pointer_right]) >= result[-1]:
-                    result.append(l[pointer_right]**2)
-                    print("right is greater, appending", l[pointer_left],  l[pointer_right], result)
-                else:
-                    result.insert(0, l[pointer_right]**2)
-                    print("right is greater, inserting", l[pointer_left],  l[pointer_right], result)
+                result.insert(0, l[pointer_right]**2)
                 pointer_right -= 1
         return result
+
+def recursive_square_sorted_list(l, memo = []):
+    '''recursively takes a sorted list and returns a sorted list of their squares'''
+    if len(l) == 0:
+        return []
+    # base case
+    if len(l) == 1:
+        memo.insert(0, l[0]**2)
+        return memo
+    # recursive case
+    else:
+        if abs(l[0]) >= abs(l[-1]):
+            memo.insert(0, l[0]**2)
+            recursive_square_sorted_list(l[1:], memo)
+        else:
+            memo.insert(0, l[-1]**2)
+            recursive_square_sorted_list(l[:-1], memo)
+    return memo
 
 # nums = [11, 2, 7, 15]
 # target = 9
@@ -202,4 +207,7 @@ s = 'here is a word, and here is another word.'
 print(Solution().count_repeated_words(s))
 
 print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7]))
-print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7, 9]))
+# print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7, 9]))
+# print('square sorted list', Solution().square_sorted_list([-6, -4]))
+# print('square sorted list', Solution().square_sorted_list([-6]))
+print('recursive square sorted list', recursive_square_sorted_list([-6, -4, 1, 2, 3, 7]))
