@@ -180,6 +180,26 @@ class Solution:
                 self.recursive_square_sorted_list(l[:-1], memo)
         return memo
 
+    def two_sum(self, A, t):
+        '''Return the indices of two integers in a list, such that their sum equals a given target.'''
+        # O(nlog(n))
+        for idx in range(len(A)-2):
+            for comp in range(idx+1, len(A)-1):
+                if A[idx] + A[comp] == t:
+                    return (idx, comp)
+        return (0, 0)
+
+    def two_sum_fast(self, A, t):
+        '''Look for the complement of all the visited elements.'''
+        # O(n)
+        complement = {} # target-val:index
+        for idx in range(len(A)):
+            if A[idx] in complement:
+                result = complement[A[idx]]
+                return (result, idx)
+            complement[t - A[idx]] = idx
+        return (0,0)
+
 # nums = [11, 2, 7, 15]
 # target = 9
 # result = Solution().twoSum(nums, target)
@@ -211,3 +231,6 @@ print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7]))
 # print('square sorted list', Solution().square_sorted_list([-6, -4]))
 # print('square sorted list', Solution().square_sorted_list([-6]))
 print('recursive square sorted list', Solution().recursive_square_sorted_list([-6, -4, 1, 2, 3, 7]))
+
+print("two sum", Solution().two_sum([2, 8, 12, 15], 20))
+print("two sum fast", Solution().two_sum_fast([2, 8, 12, 15], 20))
