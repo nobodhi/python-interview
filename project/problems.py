@@ -180,24 +180,24 @@ class Solution:
                 self.recursive_square_sorted_list(l[:-1], memo)
         return memo
 
-    def two_sum(self, A, t):
+    def two_sum(self, A, target):
         '''Return the indices of two integers in a list, such that their sum equals a given target.'''
         # O(nlog(n))
         for idx in range(len(A)-2):
-            for comp in range(idx+1, len(A)-1):
-                if A[idx] + A[comp] == t:
-                    return (idx, comp)
+            for c in range(idx+1, len(A)-1):
+                if A[idx] + A[c] == target:
+                    return (idx, c)
         return (0, 0)
 
-    def two_sum_fast(self, A, t):
-        '''Look for the complement of all the visited elements.'''
+    def two_sum_fast(self, A, target):
+        '''Return the indices of two integers in a list, such that their sum equals a given target.
+           Keep a dict of the indices complement of all the visited elements.'''
         # O(n)
-        complement = {} # target-val:index
+        complement = {}
         for idx in range(len(A)):
             if A[idx] in complement:
-                result = complement[A[idx]]
-                return (result, idx)
-            complement[t - A[idx]] = idx
+                return (complement[A[idx]], idx)
+            complement[target - A[idx]] = idx  # target-val:index
         return (0,0)
 
 # nums = [11, 2, 7, 15]
