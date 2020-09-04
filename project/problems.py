@@ -138,12 +138,11 @@ class Solution:
         unique = set()
         repeated = set()
         words = s.split()
+        # a set will automagically ignore repeated inserts
         for word in words:
             if word in unique:
-                if word not in repeated:
-                    repeated.add(word)
-            else:
-                unique.add(word)
+                repeated.add(word)
+            unique.add(word)
         return repeated
     
     def square_sorted_list(self, l) -> list:
