@@ -127,22 +127,24 @@ class Solution:
                 break
         return result
 
-    def count_repeated_words(self, s) -> dict:
+    def find_repeated_words(self, s) -> dict:
         '''returns any repeated words in a string'''
         stop_chars = ',.'
         # strip out stop characters
         for char in stop_chars:
             if char in s:
                 s = s.replace(char, '')
-        # count each word into a dictionary
-        counts = {}
+        # set approach
+        unique = set()
+        repeated = set()
         words = s.split()
         for word in words:
-            if word in counts:
-                counts[word] += 1
+            if word in unique:
+                if word not in repeated:
+                    repeated.add(word)
             else:
-                counts[word] = 1
-        return [word for word in counts if counts[word] > 1]
+                unique.add(word)
+        return repeated
     
     def square_sorted_list(self, l) -> list:
         '''takes a sorted int list and returns a sorted list of their squares'''
@@ -224,7 +226,7 @@ class Solution:
 # print(Solution().longestCommonPrefix([]))
 
 s = 'here is a word, and here is another word.'
-print(Solution().count_repeated_words(s))
+print(Solution().find_repeated_words(s))
 
 print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7]))
 # print('square sorted list', Solution().square_sorted_list([-6, -4, 1, 2, 3, 7, 9]))

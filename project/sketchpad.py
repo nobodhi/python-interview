@@ -2,20 +2,23 @@ import time
 start = time.time()
 
 def count_words(str):
+    '''count any words that occur more than once. we can use a counting dictionary or a set approach.'''
     stop_chars = ',.'
     # strip out stop characters
     for char in stop_chars:
         if char in str:
             str = str.replace(char, '')
-    # count each word into a dictionary
-    counts = {}
+    # set approach
+    unique = set()
+    repeated = set()
     words = str.split()
     for word in words:
-        if word in counts:
-            counts[word] += 1
+        if word in unique:
+            if word not in repeated:
+                repeated.add(word)
         else:
-            counts[word] = 1
-    return [word for word in counts if counts[word] > 1]
+            unique.add(word)
+    return repeated
 
 
 start = time.time()
