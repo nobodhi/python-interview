@@ -147,7 +147,7 @@ class Solution:
     
     def square_sorted_list(self, l) -> list:
         '''takes a sorted int list and returns a sorted list of their squares'''
-        # the squares may not be in order!
+        # since the square of a negative is positive, the squares may not be in order!
         if len(l) == 0:
             return []
         result = []
