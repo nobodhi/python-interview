@@ -22,8 +22,8 @@ class Solution:
         else:
             max_value = 2**31-1
         array = list(str(x))
-        power = len(array)-1
-        for index in range(0, power+1):
+        power = len(array)
+        for index in range(0, power):
             result += (10**(index)*int(array[index]))
             if result > max_value:
                 return 0
@@ -207,10 +207,10 @@ class Solution:
 # print(result)
 
 
-# print(Solution().simple_reverse(321))
-# print(Solution().simple_reverse(-321))
-# print(Solution().string_reverse(321))
-# print(Solution().string_reverse(-321))
+print(Solution().simple_reverse(321))
+print(Solution().simple_reverse(-321))
+print(Solution().reverse(321))
+print(Solution().reverse(-321))
 
 # # -1534236469
 # # -2147483412
